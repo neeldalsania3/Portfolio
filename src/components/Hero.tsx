@@ -70,7 +70,7 @@ export function Hero() {
             >
               <motion.p
                 key={currentTextIndex}
-                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-accent-primary dark:text-accent-primary"
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-[#0369a1] dark:text-[#38bdf8]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -214,17 +214,22 @@ export function Hero() {
         </div>
       </div>
 
+      </div>
+
       {/* Scroll indicator */}
-        <motion.button
+      <motion.div
+        className="absolute inset-x-0 bottom-24 sm:bottom-8 lg:bottom-28 z-20 flex justify-center pointer-events-none"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        <button
           onClick={() => scrollToSection('about')}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 p-2 rounded-full glass-card hover:scale-110 transition-transform"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          className="p-2 rounded-full glass-card hover:scale-110 transition-transform pointer-events-auto"
           aria-label="Scroll down"
         >
           <ArrowDown className="w-5 h-5" />
-        </motion.button>
-      </div>
+        </button>
+      </motion.div>
 
       {/* Tech marquee */}
       <div className="absolute bottom-0 left-0 right-0 py-8 bg-gradient-to-t from-background-light-DEFAULT dark:from-background-dark to-transparent">
