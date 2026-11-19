@@ -279,3 +279,10 @@
 .preloader-logo {
   @apply text-6xl font-bold gradient-text animate-pulse;
 }
+
+@media (max-width: 639px) {
+  #home .hero-cta {
+    padding: 0.625rem 1.25rem !important;
+    font-size: 0.875rem !important;
+  }
+}

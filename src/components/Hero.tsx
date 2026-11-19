@@ -54,7 +54,7 @@ export function Hero() {
             </motion.p>
 
             <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading mb-4 leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-heading mb-4 leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
@@ -90,20 +90,20 @@ export function Hero() {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-6 sm:mb-8 px-4 sm:px-0"
+              className="flex flex-col items-center sm:items-stretch sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-6 sm:mb-8 px-4 sm:px-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
             >
               <button
                 onClick={() => scrollToSection('contact')}
-                className="btn-primary shimmer w-full sm:w-auto"
+                className="btn-primary hero-cta shimmer w-full max-w-[280px] sm:w-auto sm:max-w-none"
               >
                 Contact Me
               </button>
               <a
                 href={personalInfo.resumeUrl}
-                className="btn-secondary flex items-center justify-center gap-2 w-full sm:w-auto"
+                className="btn-secondary hero-cta flex items-center justify-center gap-2 w-full max-w-[280px] sm:w-auto sm:max-w-none"
                 download
               >
                 <Download className="w-4 h-4" />

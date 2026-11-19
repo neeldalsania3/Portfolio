@@ -262,11 +262,11 @@ export const education: Education[] = [
 export const techStack = [
   "React.js",
   "Node.js",
-  "Vue.js",
+  "Express.js",
   "TypeScript",
   "JavaScript",
   "MongoDB",
-  "Express.js",
+  "Vue.js",
   "Redux",
   "Tailwind CSS",
   "Git",
