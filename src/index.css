@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apply theme class before first paint to avoid flash */
+@layer base {
+  :root {
+    --background: #FFFFFF;
+    --surface: #F5F7FB;
+    --text: #101828;
+    --text-muted: #64748b;
+    --accent-from: #07b6eb;
+    --accent-via: #0580d4;
+    --accent-to: #040fe0;
+  }
+
+  .dark {
+    --background: #0a0e1a;
+    --surface: #141B2D;
+    --text: #E8ECF5;
+    --text-muted: #94a3b8;
+    --accent-from: #07b6eb;
+    --accent-via: #0580d4;
+    --accent-to: #040fe0;
+  }
+
+  * {
+    @apply border-slate-200 dark:border-slate-800;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-white dark:bg-[#0a0e1a] text-[#101828] dark:text-[#E8ECF5];
+    font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', 'Sora', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Glass card effect */
+  .glass-card {
+    @apply bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-slate-200/50 dark:border-white/10 rounded-2xl;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .glass-card:hover {
+    @apply border-slate-300/50 dark:border-white/20;
+    box-shadow: 0 8px 32px 0 rgba(7, 182, 235, 0.25);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(160deg, rgba(7, 182, 235, 1) 0%, rgba(4, 15, 224, 0.99) 100%);
+  }
+
+  /* Gradient border */
+  .gradient-border {
+    position: relative;
+    border: 1px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+      linear-gradient(160deg, #07b6eb, #040fe0) border-box;
+  }
+
+  .dark .gradient-border {
+    background: linear-gradient(#0a0e1a, #0a0e1a) padding-box,
+      linear-gradient(160deg, #07b6eb, #040fe0) border-box;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply px-6 py-3 rounded-full font-medium text-white;
+    background: linear-gradient(160deg, rgba(7, 182, 235, 1) 0%, rgba(4, 15, 224, 0.99) 100%);
+    @apply hover:shadow-lg hover:shadow-[#07b6eb]/50 transition-all duration-300;
+    @apply hover:scale-105 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-full font-medium border-2 border-[#07b6eb] dark:border-[#07b6eb];
+    @apply text-[#0580d4] dark:text-[#07b6eb] hover:bg-[#07b6eb]/10 dark:hover:bg-[#07b6eb]/10;
+    @apply transition-all duration-300 hover:scale-105 active:scale-95;
+  }
+
+  /* Glow effect */
+  .glow {
+    box-shadow: 0 0 20px rgba(7, 182, 235, 0.35);
+  }
+
+  .glow-hover:hover {
+    box-shadow: 0 0 30px rgba(7, 182, 235, 0.5), 0 0 60px rgba(4, 15, 224, 0.25);
+  }
+
+  /* Shimmer effect for buttons */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  /* Noise texture */
+  .noise-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' /%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  /* Dot pattern */
+  .dot-pattern {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(7, 182, 235, 0.15) 1px,
+      transparent 0
+    );
+    background-size: 32px 32px;
+    mask-image: radial-gradient(
+      ellipse 80% 50% at 50% 50%,
+      black 0%,
+      transparent 100%
+    );
+  }
+
+  /* Section label */
+  .section-label {
+    @apply font-mono text-sm text-[#07b6eb] dark:text-[#07b6eb] uppercase tracking-wider;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-slate-100 dark:bg-slate-900;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400 dark:bg-slate-600;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Aurora background effect */
+.aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.3;
+  animation: float 20s ease-in-out infinite;
+}
+
+.aurora-blob-1 {
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(160deg, #07b6eb, #0580d4);
+  top: -10%;
+  left: -10%;
+  animation-delay: 0s;
+}
+
+.aurora-blob-2 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(160deg, #0580d4, #040fe0);
+  top: 40%;
+  right: -5%;
+  animation-delay: 5s;
+}
+
+.aurora-blob-3 {
+  width: 450px;
+  height: 450px;
+  background: linear-gradient(160deg, #040fe0, #07b6eb);
+  bottom: -10%;
+  left: 30%;
+  animation-delay: 10s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+/* Preloader styles */
+.preloader {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-[#0a0e1a];
+}
+
+.preloader-logo {
+  @apply text-6xl font-bold gradient-text animate-pulse;
+}
